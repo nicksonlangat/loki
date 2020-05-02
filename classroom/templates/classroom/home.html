@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome to Virtual Tele! <span class="icon-emo-happy"></span></h2>
+  <p class="lead">
+    If you already have an account, go ahead and <a href="{% url 'login' %}">log in</a>. If you are new to Virtual Tele , get started
+    by creating an <a href="{% url 'student_signup' %}"> account</a>
+  </p>
+  <hr>
+  <h3>Who are we?</h3>
+  <p>
+    VirtualTele is an agency or a platform which connects you to work by allowing you to work from home. You manage your time while delivering quality service to the organisation and our clients. Only those applicants who pass the survey shall be shortlisted for an interview. 
+  </p>
+  
+  <p class="mb-0">Jannele Thompson<br><a href="https://twitter.com/Jannele/">@janelle</a></p>
+{% endblock %}
