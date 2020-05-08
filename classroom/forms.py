@@ -33,15 +33,15 @@ class StudentSignUpForm(UserCreationForm):
 		user.is_student = True
 		user.save()
 		student = Student.objects.create(user=user)
-		student.applications.add(*self.cleaned_data.get('applications'))
+		student.interests.add(*self.cleaned_data.get('applications'))
 		return user
         
 class StudentInterestsForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('applications', )
+        fields = ('interests', )
         widgets = {
-            'applications': forms.CheckboxSelectMultiple
+            'interests': forms.CheckboxSelectMultiple
         }
 
 
