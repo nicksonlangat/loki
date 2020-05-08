@@ -24,7 +24,7 @@ class StudentSignUpForm(UserCreationForm):
 	lastname = forms.CharField(max_length=30,widget=forms.TextInput(attrs={ 'type': 'text',   'class': 'form-control',   } ), label = "Last name",)
 	email = forms.EmailField(widget=forms.TextInput(attrs={  'type': 'email',   'class': 'form-control',    }    ), label = "Email Address", )
 	phone = forms.CharField(max_length=30,widget=forms.TextInput(attrs={'type': 'text','class': 'form-control',}), label = "Mobile No.",)
-	interests = forms.ModelMultipleChoiceField(queryset=Subject.objects.all(), widget=forms.CheckboxSelectMultiple,required=True)
+	applications = forms.ModelMultipleChoiceField(queryset=Subject.objects.all(), widget=forms.CheckboxSelectMultiple,required=True)
 	class Meta(UserCreationForm.Meta):
 		model = User
 	@transaction.atomic
@@ -33,15 +33,15 @@ class StudentSignUpForm(UserCreationForm):
 		user.is_student = True
 		user.save()
 		student = Student.objects.create(user=user)
-		student.interests.add(*self.cleaned_data.get('interests'))
+		student.applications.add(*self.cleaned_data.get('applications'))
 		return user
         
 class StudentInterestsForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ('interests', )
+        fields = ('applications', )
         widgets = {
-            'interests': forms.CheckboxSelectMultiple
+            'applications': forms.CheckboxSelectMultiple
         }
 
 
